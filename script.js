@@ -1,7 +1,10 @@
-document.getElementById('welcome-screen').addEventListener('click', function() {
-    this.style.opacity = '0';
+function entrarNoLab() {
+    const screen = document.getElementById('welcome-screen');
+    const main = document.getElementById('main-site');
+    
+    screen.style.opacity = '0';
     setTimeout(() => {
-        this.style.display = 'none';
-        document.getElementById('main-content').classList.remove('hidden');
-    }, 500);
-});
+        screen.style.display = 'none';
+        main.classList.remove('hidden');
+    }, 1000);
+}
