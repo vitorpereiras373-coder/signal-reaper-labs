@@ -1,0 +1,50 @@
+:root {
+    --flipper-orange: #FF8200;
+    --bg-black: #000000;
+    --card-bg: #0a0a0a;
+}
+
+body {
+    margin: 0; background: var(--bg-black); color: white;
+    font-family: 'Roboto Mono', monospace; overflow-x: hidden;
+}
+
+/* TELA DE ENTRADA */
+#welcome-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1000; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; background: black;
+}
+
+#bgVideo {
+    position: absolute; width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.3) grayscale(1);
+}
+
+.overlay-welcome {
+    position: absolute; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, black 90%);
+}
+
+.intro-text { position: relative; z-index: 10; text-align: center; }
+.intro-text h1 { font-size: 3rem; letter-spacing: 10px; color: var(--flipper-orange); }
+
+/* GRID DE PRODUTOS */
+.products-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; padding: 40px; max-width: 1200px; margin: 0 auto;
+}
+
+.product-card {
+    background: var(--card-bg); border: 1px solid #222;
+    padding: 25px; border-radius: 4px; transition: 0.3s;
+}
+
+.product-card:hover {
+    border-color: var(--flipper-orange);
+    box-shadow: 0 0 20px rgba(255, 130, 0, 0.2);
+}
+
+.card-header { font-size: 0.7rem; color: var(--flipper-orange); margin-bottom: 10px; }
+
+.hidden { display: none; }
