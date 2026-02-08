@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Reaper | Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-welcome"></div>
+        <div class="intro-text">
+            <h1 class="glitch">VITOR REAPER</h1>
+            <p class="pulse">CLIQUE PARA ACESSAR O LAB</p>
+        </div>
+    </div>
+
+    <main id="main-content" class="hidden">
+        <nav>
+            <div class="logo">SIGNAL_REAPER_V1.1</div>
+            <div class="status">SYSTEM_READY</div>
+        </nav>
+
+        <section class="hero-section">
+            <h2>TEORIA & PRÁTICA</h2>
+            <p>Estudante de Engenharia de Controle e Automação @ IFSP. Desenvolvendo ferramentas de auditoria de hardware e análise de radiofrequência.</p>
+        </section>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="card-header">ELITE_AUDITOR</div>
+                <h3>Marauder CYD 2.8"</h3>
+                <p>ESP32-WROOM-32 | Bateria 1800mAh | WiFi & Bluetooth Pentest</p>
+            </div>
+            
+            <div class="product-card">
+                <div class="card-header">RF_AUDITOR</div>
+                <h3>Sub-GHz Command</h3>
+                <p>CC1101 Transceiver | Antena 8cm | Clonagem 433MHz</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
