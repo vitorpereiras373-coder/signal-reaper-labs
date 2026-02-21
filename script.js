@@ -13,7 +13,7 @@ const randomIP = () => {
 const pentestLines = [
     `> BOOT_SEQUENCE: ${getDateTime()}`,
     `> LOCAL_HOST_IP: ${randomIP()}`,
-    "> MOUNTING ESP32_MARAUDER... OK",
+    "> MOUNTING MARAUDER... OK",
     "> INTERFACE: wlan0mon (MONITOR MODE)",
     "> SCANNING FREQUENCIES [2.4GHz]...",
     "> PACKET_INJECTION: ENABLED",
