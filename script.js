@@ -24,7 +24,7 @@ const pentestLines = [
 
 let lineIdx = 0;
 
-// Função que escreve as linhas uma a uma
+// Função que escreve as linhas uma a uma no terminal
 function runTerminal() {
     const content = document.getElementById("terminal-content");
     if (content && lineIdx < pentestLines.length) {
@@ -41,7 +41,7 @@ function runTerminal() {
     }
 }
 
-// Função para fazer a transição de tela ao clicar
+// Função para fazer a transição de tela ao clicar (Entrar no site)
 function iniciarLab() {
     const screen = document.getElementById('welcome-screen');
     const main = document.getElementById('main-site');
@@ -54,6 +54,14 @@ function iniciarLab() {
         main.classList.add('show-site');
         window.scrollTo(0, 0);
     }, 800);
+}
+
+// NOVA FUNÇÃO: Redirecionamento para WhatsApp com mensagem automática
+function contatoWhatsApp(produto) {
+    const numero = "5511915723418"; // <-- SUBSTITUA PELO SEU NÚMERO (Ex: 5517991234567)
+    const mensagem = encodeURIComponent(`Olá Vitor, vi o ${produto} no Signal Reaper Labs e gostaria de mais detalhes técnicos.`);
+    const url = `https://wa.me/${numero}?text=${mensagem}`;
+    window.open(url, '_blank');
 }
 
 // Inicia o terminal ao carregar a janela
