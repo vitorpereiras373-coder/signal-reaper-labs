@@ -2,6 +2,8 @@
     --orange: #FF8200;
     --black: #000000;
     --grey: #0a0a0a;
+    --border: #1a1a1a;
+    --terminal-green: #00FF00;
 }
 
 body, html {
@@ -9,44 +11,115 @@ body, html {
     background: var(--black);
     color: white;
     font-family: 'Roboto Mono', monospace;
+    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
-/* TELA DE BOAS VINDAS */
+/* TELA DE ENTRADA */
 #welcome-screen {
     position: fixed; width: 100%; height: 100vh;
     z-index: 1000; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    background: black; transition: 1s ease-in-out;
+    background: black; transition: 1.2s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 #hero-video {
     position: absolute; width: 100%; height: 100%;
-    object-fit: cover; filter: brightness(0.3) grayscale(1);
+    object-fit: cover; 
+    object-position: center;
+    filter: brightness(0.6);
 }
 
 .video-overlay {
     position: absolute; width: 100%; height: 100%;
-    background: radial-gradient(circle, transparent 20%, var(--black) 95%);
+    background: transparent; 
 }
 
-.welcome-text { position: relative; z-index: 10; text-align: center; }
-.welcome-text h1 { font-size: 3.5rem; letter-spacing: 15px; color: var(--orange); margin: 0; }
-.pulse { font-size: 0.8rem; margin-top: 20px; letter-spacing: 5px; animation: blink 2s infinite; }
+/* TEXTO CENTRALIZADO */
+.welcome-text { 
+    position: absolute; 
+    top: 45%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; 
+    z-index: 10; 
+    text-align: center; 
+}
 
-@keyframes blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+.instruction-text { 
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem; 
+    letter-spacing: 4px; 
+    animation: blink 2s infinite; 
+    color: var(--orange); 
+    text-shadow: 0 0 10px rgba(255, 130, 0, 0.7);
+}
 
-/* SITE PRINCIPAL */
-.hidden { display: none; }
-#main-site { padding: 40px 20px; animation: fadeIn 1s forwards; }
+/* TERMINAL COM MOLDURA AUMENTADA */
+.terminal-box {
+    background: rgba(0, 0, 0, 0.9);
+    
+    /* Moldura técnica dupla */
+    border: 2px solid var(--orange);
+    outline: 1px solid rgba(255, 130, 0, 0.5);
+    outline-offset: 4px;
+    
+    padding: 20px;
+    position: fixed;
+    bottom: 50px; 
+    left: 50px; 
+    
+    /* Área aumentada */
+    width: 480px; 
+    height: 220px;
+    
+    text-align: left;
+    font-size: 0.75rem;
+    color: var(--terminal-green);
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 0 30px rgba(255, 130, 0, 0.2), inset 0 0 15px rgba(0, 255, 0, 0.05);
+    line-height: 1.6;
+    z-index: 20;
+}
 
-nav { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 50px; }
+.terminal-header {
+    font-size: 0.6rem;
+    color: var(--orange);
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 130, 0, 0.3);
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.terminal-cursor {
+    animation: blink 1s infinite;
+    color: var(--orange);
+    font-weight: bold;
+}
+
+@keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* CONTEÚDO DO SITE (PÓS-CLIQUE) */
+#main-site { opacity: 0; visibility: hidden; transition: 1s ease-in; }
+.show-site { opacity: 1 !important; visibility: visible !important; }
+
+nav { 
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%; border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 100;
+}
 .logo { color: var(--orange); font-weight: bold; }
 
-.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-.card { background: var(--grey); border: 1px solid #222; padding: 30px; border-radius: 4px; transition: 0.3s; }
-.card:hover { border-color: var(--orange); transform: scale(1.02); }
-.tag { color: var(--orange); font-size: 0.7rem; border: 1px solid var(--orange); padding: 2px 8px; }
-.tech-info { margin-top: 20px; color: #555; font-size: 0.8rem; }
+.presentation { max-width: 900px; margin: 80px auto; padding: 0 20px; }
+.tag { color: var(--orange); font-size: 0.7rem; border: 1px solid var(--orange); padding: 4px 10px; border-radius: 2px; }
+.orange-text { color: var(--orange); }
+.white-text { color: #fff; }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.products-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; max-width: 1100px; margin: 50px auto; padding: 0 20px;
+}
+.card { background: var(--grey); border: 1px solid var(--border); padding: 35px; border-radius: 8px; }
+
+.hidden { display: none; }
