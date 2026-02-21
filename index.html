@@ -14,11 +14,9 @@
             <source src="banner.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
-        
         <div class="welcome-text">
             <p class="instruction-text">TOQUE PARA INICIAR</p>
         </div>
-
         <div class="terminal-box">
             <div class="terminal-header">SIGNAL_REAPER_OS [VER 2.0.26]</div>
             <div id="terminal-content"></div>
@@ -35,23 +33,13 @@
         <section class="presentation">
             <span class="tag">Identity Profile</span>
             <h2>Olá, eu me chamo <span class="orange-text">Vitor</span>.</h2>
-            
-            <p>
-                Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP. 
-                Atualmente estou consolidando minha base teórica, enquanto aplico 
-                conhecimentos práticos em <span class="orange-text">eletrônica e programação C++</span>.
-            </p>
-            
-            <p>
-                Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span> 
-                e ferramentas para <span class="orange-text">auditoria de sinais</span>.
-            </p>
+            <p>Engenharia de Controle e Automação | Desenvolvedor de Sistemas Embarcados.</p>
         </section>
 
         <section class="store-section">
             <div class="product-grid">
                 
-                <div class="product-card">
+                <div class="product-card" onclick="toggleDetails(this)">
                     <img src="img/marauder.jpg" class="product-bg" alt="Marauder CYD">
                     <div class="product-overlay">
                         <span class="tech-tag">SECURITY LAB</span>
@@ -67,7 +55,7 @@
                     <div class="product-label">MARAUDER_CYD</div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="toggleDetails(this)">
                     <img src="img/cc1101.jpg" class="product-bg" alt="Command CC1101">
                     <div class="product-overlay">
                         <span class="tech-tag">RF ANALYSIS</span>
@@ -83,20 +71,20 @@
                     <div class="product-label">COMMAND_CC1101</div>
                 </div>
 
-                <div class="product-card">
-                    <img src="img/lora.jpg" class="product-bg" alt="LoRa SX1278">
+                <div class="product-card construction" onclick="toggleDetails(this)">
+                    <div class="construction-bg"></div>
                     <div class="product-overlay">
-                        <span class="tech-tag">CONNECTIVITY</span>
-                        <h3>LoRa SX1278</h3>
+                        <span class="tech-tag" style="border-color: #ff0000; color: #ff0000;">SYSTEM_OFFLINE</span>
+                        <h3 style="color: #ff0000;">UNDER DEVELOPMENT</h3>
                         <div class="specs-mini">
-                            <p>> CHIP: SX1278</p>
-                            <p>> PROTOCOL: LoRa</p>
-                            <p>> DIST: LONG RANGE</p>
+                            <p>> STATUS: 404_NOT_FOUND</p>
+                            <p>> MODULE: LORA_MESH</p>
+                            <p>> BOOT: AWAITING_FIRMWARE</p>
                         </div>
-                        <div class="price">R$ 120,00</div>
-                        <button class="buy-btn" onclick="contatoWhatsApp('LoRa SX1278')">ADQUIRIR</button>
+                        <div class="price">-- --</div>
+                        <button class="buy-btn" style="border-color: #444; color: #444;" disabled>BLOQUEADO</button>
                     </div>
-                    <div class="product-label">LORA_SX1278</div>
+                    <div class="product-label" style="color: #444;">[PROJECT_NULL]</div>
                 </div>
 
             </div>
