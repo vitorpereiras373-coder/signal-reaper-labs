@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signal Reaper Labs | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
             --orange: #FF8200;
             --black: #000000;
             --grey: #0a0a0a;
             --border: #1a1a1a;
+            --terminal-green: #00FF00;
         }
 
         body, html {
@@ -22,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* TELA DE ENTRADA */
+        /* TELA DE ENTRADA (HERO SECTION) */
         #welcome-screen {
             position: fixed; width: 100%; height: 100vh;
             z-index: 1000; cursor: pointer;
@@ -33,9 +34,9 @@
         #hero-video {
             position: absolute; width: 100%; height: 100%;
             object-fit: cover; 
-            /* POSICIONAMENTO: 15% foca no topo (cabeça do Newton) */
-            object-position: center 15%; 
-            filter: brightness(0.35) grayscale(1);
+            object-position: center; 
+            /* Filtro ajustado: removemos o cinza e deixamos brilho em 0.5 para contraste */
+            filter: brightness(0.5); 
         }
 
         .video-overlay {
@@ -43,9 +44,40 @@
             background: radial-gradient(circle, transparent 10%, var(--black) 90%);
         }
 
-        .welcome-text { position: relative; z-index: 10; text-align: center; }
-        .welcome-text h1 { font-size: clamp(1.5rem, 8vw, 3.5rem); letter-spacing: 10px; color: var(--orange); margin: 0; }
-        .pulse { font-size: 0.8rem; margin-top: 30px; letter-spacing: 5px; animation: blink 2s infinite; color: #666; }
+        .welcome-text { position: relative; z-index: 10; text-align: center; width: 90%; max-width: 600px; }
+        .welcome-text h1 { 
+            font-family: 'Press Start 2P', cursive; /* Estilo Pixel Art */
+            font-size: clamp(1rem, 5vw, 2.5rem); 
+            letter-spacing: 2px; 
+            color: var(--orange); 
+            margin-bottom: 30px; 
+        }
+
+        /* CONSOLE DE PENTEST */
+        .terminal-box {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--orange);
+            padding: 15px;
+            margin: 0 auto 30px auto;
+            width: 100%;
+            max-width: 450px;
+            height: 150px;
+            text-align: left;
+            font-size: 0.65rem;
+            color: var(--terminal-green);
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(255, 130, 0, 0.2);
+            line-height: 1.5;
+        }
+
+        .terminal-cursor {
+            animation: blink 1s infinite;
+            color: var(--orange);
+            font-weight: bold;
+        }
+
+        .pulse { font-size: 0.8rem; margin-top: 20px; letter-spacing: 5px; animation: blink 2s infinite; color: #666; text-transform: uppercase; }
 
         @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
@@ -60,17 +92,13 @@
         }
         .logo { color: var(--orange); font-weight: bold; letter-spacing: 2px; }
 
-        /* SEÇÃO APRESENTAÇÃO ATUALIZADA */
-        .presentation {
-            max-width: 900px; margin: 80px auto; padding: 0 20px; text-align: left;
-        }
+        .presentation { max-width: 900px; margin: 80px auto; padding: 0 20px; text-align: left; }
         .tag { color: var(--orange); font-size: 0.7rem; border: 1px solid var(--orange); padding: 4px 10px; border-radius: 2px; text-transform: uppercase; }
         .presentation h2 { font-size: 2.5rem; margin: 20px 0; letter-spacing: -1px; }
         .presentation p { line-height: 1.8; color: #888; font-size: 1.1rem; margin-bottom: 20px; }
         .orange-text { color: var(--orange); }
         .white-text { color: #fff; }
 
-        /* GRID DE PRODUTOS */
         .products-grid { 
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 30px; max-width: 1100px; margin: 50px auto; padding: 0 20px;
@@ -91,11 +119,18 @@
 
     <div id="welcome-screen" onclick="iniciarLab()">
         <video autoplay muted loop playsinline id="hero-video">
-            <source src="hero.mp4" type="video/mp4">
+            <source src="banner.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
+        
         <div class="welcome-text">
             <h1 class="glitch">SIGNAL REAPER LABS</h1>
+            
+            <div class="terminal-box">
+                <div id="terminal-content"></div>
+                <span class="terminal-cursor">_</span>
+            </div>
+
             <p class="pulse">CLIQUE PARA INICIAR SISTEMA</p>
         </div>
     </div>
@@ -118,8 +153,7 @@
             
             <p>
                 Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span> 
-                e ferramentas para <span class="orange-text">auditoria de sinais</span>, 
-                podendo me aprimorar ao decorrer do curso.
+                e ferramentas para <span class="orange-text">auditoria de sinais</span>.
             </p>
         </section>
 
@@ -148,11 +182,33 @@
     </main>
 
     <script>
+        // Lógica do Terminal de Pentest
+        const pentestLines = [
+            "> nmap -sV 192.168.1.1",
+            "> starting marauder_cyd...",
+            "> capturing handshake...",
+            "> interface wlan0mon enabled",
+            "> scanning frequencies...",
+            "> SIGNAL REAPER LABS: ONLINE",
+            "> AWAITING USER INPUT..."
+        ];
+
+        let lineIdx = 0;
+        function runTerminal() {
+            const content = document.getElementById("terminal-content");
+            if (lineIdx < pentestLines.length) {
+                content.innerHTML += pentestLines[lineIdx] + "<br>";
+                lineIdx++;
+                // Velocidade de digitação das linhas (800ms)
+                setTimeout(runTerminal, 800); 
+            }
+        }
+
+        // Função para transição de tela
         function iniciarLab() {
             const screen = document.getElementById('welcome-screen');
             const main = document.getElementById('main-site');
             
-            // Animação de subida estilo cortina
             screen.style.transform = 'translateY(-100%)';
             
             setTimeout(() => {
@@ -161,6 +217,9 @@
                 window.scrollTo(0, 0);
             }, 800);
         }
+
+        // Inicia o terminal assim que o site carrega
+        window.onload = runTerminal;
     </script>
 </body>
 </html>
