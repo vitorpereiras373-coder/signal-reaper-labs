@@ -5,122 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signal Reaper Labs | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --orange: #FF8200;
-            --black: #000000;
-            --grey: #0a0a0a;
-            --border: #1a1a1a;
-            --terminal-green: #00FF00;
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            background: var(--black);
-            color: white;
-            font-family: 'Roboto Mono', monospace;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        /* TELA DE ENTRADA */
-        #welcome-screen {
-            position: fixed; width: 100%; height: 100vh;
-            z-index: 1000; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            background: black; transition: 1.2s cubic-bezier(0.7, 0, 0.3, 1);
-        }
-
-        #hero-video {
-            position: absolute; width: 100%; height: 100%;
-            object-fit: cover; 
-            object-position: center;
-            filter: brightness(0.7); /* Sem grayscale para mostrar as cores do Swampert */
-        }
-
-        /* Removido o radial-gradient para tirar o blur das bordas */
-        .video-overlay {
-            position: absolute; width: 100%; height: 100%;
-            background: transparent; 
-        }
-
-        .welcome-text { 
-            position: absolute; 
-            top: 15%; /* Baixado para não cortar o topo do banner */
-            width: 100%; 
-            z-index: 10; 
-            text-align: center; 
-        }
-
-        /* ESTILO DO TERMINAL POSICIONADO */
-        .terminal-box {
-            background: rgba(0, 0, 0, 0.85);
-            border: 1px solid var(--orange);
-            padding: 12px;
-            
-            /* Posicionamento conforme sua seta */
-            position: fixed;
-            bottom: 10%; 
-            left: 5%; 
-            
-            width: 300px; 
-            height: 180px;
-            
-            text-align: left;
-            font-size: 0.65rem;
-            color: var(--terminal-green);
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(255, 130, 0, 0.3);
-            line-height: 1.4;
-        }
-
-        .terminal-cursor {
-            animation: blink 1s infinite;
-            color: var(--orange);
-        }
-
-        .instruction-text { 
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem; 
-            letter-spacing: 2px; 
-            animation: blink 2s infinite; 
-            color: var(--orange); 
-            text-transform: uppercase;
-        }
-
-        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
-        /* CONTEÚDO PRINCIPAL */
-        #main-site { opacity: 0; visibility: hidden; transition: 1s ease-in; padding-bottom: 100px; }
-        .show-site { opacity: 1 !important; visibility: visible !important; }
-
-        nav { 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid var(--border);
-            background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 100;
-        }
-        .logo { color: var(--orange); font-weight: bold; letter-spacing: 2px; }
-
-        .presentation { max-width: 900px; margin: 80px auto; padding: 0 20px; text-align: left; }
-        .tag { color: var(--orange); font-size: 0.7rem; border: 1px solid var(--orange); padding: 4px 10px; border-radius: 2px; text-transform: uppercase; }
-        .presentation h2 { font-size: 2.5rem; margin: 20px 0; letter-spacing: -1px; }
-        .presentation p { line-height: 1.8; color: #888; font-size: 1.1rem; margin-bottom: 20px; }
-        .orange-text { color: var(--orange); }
-        .white-text { color: #fff; }
-
-        .products-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; max-width: 1100px; margin: 50px auto; padding: 0 20px;
-        }
-        .card { 
-            background: var(--grey); border: 1px solid var(--border); 
-            padding: 35px; border-radius: 8px; transition: 0.4s; 
-        }
-        .card:hover { border-color: var(--orange); transform: translateY(-10px); }
-
-        .hidden { display: none; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -128,6 +13,7 @@
         <video autoplay muted loop playsinline id="hero-video">
             <source src="banner.mp4" type="video/mp4">
         </video>
+        
         <div class="video-overlay"></div>
         
         <div class="welcome-text">
@@ -135,6 +21,7 @@
         </div>
 
         <div class="terminal-box">
+            <div class="terminal-header">SYSTEM_STATUS: ACTIVE</div>
             <div id="terminal-content"></div>
             <span class="terminal-cursor">_</span>
         </div>
@@ -143,7 +30,7 @@
     <main id="main-site">
         <nav>
             <div class="logo">SIGNAL_REAPER_LABS</div>
-            <div style="font-size: 0.7rem; color: #333;">IFSP_CAMPUS_CATANDUVA</div>
+            <div style="font-size: 0.7rem; color: #444;">IFSP_CAMPUS_CATANDUVA</div>
         </nav>
 
         <section class="presentation">
