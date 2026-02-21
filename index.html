@@ -13,7 +13,6 @@
         <video autoplay muted loop playsinline id="hero-video">
             <source src="banner.mp4" type="video/mp4">
         </video>
-        
         <div class="video-overlay"></div>
         
         <div class="welcome-text">
@@ -21,7 +20,7 @@
         </div>
 
         <div class="terminal-box">
-            <div class="terminal-header">SYSTEM_STATUS: ACTIVE</div>
+            <div class="terminal-header">SIGNAL_REAPER_OS [VER 2.0.26]</div>
             <div id="terminal-content"></div>
             <span class="terminal-cursor">_</span>
         </div>
@@ -30,18 +29,22 @@
     <main id="main-site">
         <nav>
             <div class="logo">SIGNAL_REAPER_LABS</div>
-            <div style="font-size: 0.7rem; color: #444;">IFSP_CAMPUS_CATANDUVA</div>
+            <div class="campus-tag">IFSP_CAMPUS_CATANDUVA</div>
         </nav>
 
         <section class="presentation">
             <span class="tag">Identity Profile</span>
             <h2>Olá, eu me chamo <span class="orange-text">Vitor</span>.</h2>
+            
             <p>
                 Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP. 
-                Consolidando base teórica e aplicando prática em <span class="orange-text">eletrônica e C++</span>.
+                Atualmente estou consolidando minha base teórica, enquanto aplico 
+                conhecimentos práticos em <span class="orange-text">eletrônica e programação C++</span>.
             </p>
+            
             <p>
-                Foco em <span class="white-text">sistemas embarcados</span> e <span class="orange-text">auditoria de sinais</span>.
+                Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span> 
+                e ferramentas para <span class="orange-text">auditoria de sinais</span>.
             </p>
         </section>
 
@@ -49,52 +52,26 @@
             <div class="card">
                 <span class="tag">RF Analysis</span>
                 <h3>Command CC1101</h3>
-                <p>Módulo para clonagem e análise de rádio frequência.</p>
+                <p>Módulo para clonagem e análise de rádio frequência. Equipado com transceptor CC1101.</p>
                 <div class="card-specs">FREQ: 433MHz | CHIP: CC1101</div>
             </div>
+
             <div class="card">
                 <span class="tag">Security Lab</span>
                 <h3>Marauder CYD</h3>
-                <p>Interface de auditoria WiFi/Bluetooth com ESP32.</p>
-                <div class="card-specs">MCU: ESP32 | OS: MARAUDER</div>
+                <p>Interface de auditoria WiFi/Bluetooth portátil com tela touch e processamento ESP32.</p>
+                <div class="card-specs">MCU: ESP32-WROOM | OS: MARAUDER</div>
+            </div>
+
+            <div class="card">
+                <span class="tag">Connectivity</span>
+                <h3>LoRa SX1278</h3>
+                <p>Implementação de comunicação de dados de longo alcance para telemetria.</p>
+                <div class="card-specs">CHIP: SX1278 | PROTOCOL: LoRa</div>
             </div>
         </section>
     </main>
 
-    <script>
-        const pentestLines = [
-            "> nmap -sV 192.168.1.1",
-            "> starting marauder_cyd...",
-            "> capturing handshake...",
-            "> interface wlan0mon enabled",
-            "> scanning frequencies...",
-            "> packet injection: active",
-            "> SIGNAL REAPER LABS: ONLINE",
-            "> READY TO START."
-        ];
-
-        let lineIdx = 0;
-        function runTerminal() {
-            const content = document.getElementById("terminal-content");
-            if (lineIdx < pentestLines.length) {
-                content.innerHTML += pentestLines[lineIdx] + "<br>";
-                lineIdx++;
-                setTimeout(runTerminal, 600); 
-            }
-        }
-
-        function iniciarLab() {
-            const screen = document.getElementById('welcome-screen');
-            const main = document.getElementById('main-site');
-            screen.style.transform = 'translateY(-100%)';
-            setTimeout(() => {
-                screen.classList.add('hidden');
-                main.classList.add('show-site');
-                window.scrollTo(0, 0);
-            }, 800);
-        }
-
-        window.onload = runTerminal;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
