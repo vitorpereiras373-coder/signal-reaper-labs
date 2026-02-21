@@ -10,9 +10,13 @@
 <body>
 
     <div id="welcome-screen" onclick="iniciarLab()">
+        <video autoplay muted loop playsinline id="hero-video">
+            <source src="banner.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        
         <div class="welcome-text">
-            <p class="instruction-text">SISTEMA PRONTO</p>
-            <p style="font-size: 0.6rem; color: #555; margin-top: 10px;">[ TOQUE PARA ENTRAR ]</p>
+            <p class="instruction-text">TOQUE PARA INICIAR</p>
         </div>
 
         <div class="terminal-box">
@@ -25,53 +29,45 @@
     <main id="main-site">
         <nav>
             <div class="logo">SIGNAL_REAPER_LABS</div>
-            <div class="campus-tag">IFSP_CATANDUVA</div>
+            <div class="campus-tag">IFSP_CAMPUS_CATANDUVA</div>
         </nav>
 
         <section class="presentation">
             <span class="tag">Identity Profile</span>
             <h2>Olá, eu me chamo <span class="orange-text">Vitor</span>.</h2>
-            <p>Engenharia de Controle e Automação no IFSP. Especialista em <span class="white-text">Sistemas Embarcados</span> e <span class="orange-text">Auditoria de Sinais</span>.</p>
+            
+            <p>
+                Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP. 
+                Atualmente estou consolidando minha base teórica, enquanto aplico 
+                conhecimentos práticos em <span class="orange-text">eletrônica e programação C++</span>.
+            </p>
+            
+            <p>
+                Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span> 
+                e ferramentas para <span class="orange-text">auditoria de sinais</span>.
+            </p>
         </section>
 
-        <section class="store-section">
-            <div class="product-grid">
-                
-                <div class="product-card" onclick="toggleDetails(this)">
-                    <img src="img/marauder.jpg" class="product-bg" alt="Marauder CYD">
-                    <div class="product-overlay">
-                        <span class="tech-tag">SECURITY LAB</span>
-                        <h3>MARAUDER CYD</h3>
-                        <div class="specs-mini">
-                            <p>> MCU: ESP32-WROOM</p>
-                            <p>> DISP: 2.8" TFT TOUCH</p>
-                        </div>
-                        <div class="price">R$ 380,00</div>
-                        <button class="buy-btn" onclick="contatoWhatsApp('Marauder')">ADQUIRIR</button>
-                    </div>
-                    <div class="product-label">MARAUDER_CYD</div>
-                </div>
+        <section class="products-grid">
+            <div class="card">
+                <span class="tag">RF Analysis</span>
+                <h3>Command CC1101</h3>
+                <p>Módulo para clonagem e análise de rádio frequência. Equipado com transceptor CC1101.</p>
+                <div class="card-specs">FREQ: 433MHz | CHIP: CC1101</div>
+            </div>
 
-                <div class="product-card" onclick="toggleDetails(this)">
-                    <img src="img/cc1101.jpg" class="product-bg" alt="CC1101">
-                    <div class="product-overlay">
-                        <span class="tech-tag">RF ANALYSIS</span>
-                        <h3>COMMAND CC1101</h3>
-                        <div class="specs-mini">
-                            <p>> CHIP: TI CC1101</p>
-                            <p>> FREQ: 433MHz</p>
-                        </div>
-                        <div class="price">R$ 150,00</div>
-                        <button class="buy-btn" onclick="contatoWhatsApp('CC1101')">ADQUIRIR</button>
-                    </div>
-                    <div class="product-label">COMMAND_CC1101</div>
-                </div>
+            <div class="card">
+                <span class="tag">Security Lab</span>
+                <h3>Marauder CYD</h3>
+                <p>Interface de auditoria WiFi/Bluetooth portátil com tela touch e processamento ESP32.</p>
+                <div class="card-specs">MCU: ESP32-WROOM | OS: MARAUDER</div>
+            </div>
 
-                <div class="product-card construction">
-                    <div class="construction-pattern"></div>
-                    <div class="product-label" style="color: #333;">[EM_CONSTRUCAO]</div>
-                </div>
-
+            <div class="card">
+                <span class="tag">Connectivity</span>
+                <h3>LoRa SX1278</h3>
+                <p>Implementação de comunicação de dados de longo alcance para telemetria.</p>
+                <div class="card-specs">CHIP: SX1278 | PROTOCOL: LoRa</div>
             </div>
         </section>
     </main>
