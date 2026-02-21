@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* TELA DE ENTRADA (HERO SECTION) */
+        /* TELA DE ENTRADA */
         #welcome-screen {
             position: fixed; width: 100%; height: 100vh;
             z-index: 1000; cursor: pointer;
@@ -34,52 +34,62 @@
         #hero-video {
             position: absolute; width: 100%; height: 100%;
             object-fit: cover; 
-            object-position: center; 
-            /* Filtro ajustado: removemos o cinza e deixamos brilho em 0.5 para contraste */
-            filter: brightness(0.5); 
+            object-position: center;
+            filter: brightness(0.7); /* Sem grayscale para mostrar as cores do Swampert */
         }
 
+        /* Removido o radial-gradient para tirar o blur das bordas */
         .video-overlay {
             position: absolute; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 10%, var(--black) 90%);
+            background: transparent; 
         }
 
-        .welcome-text { position: relative; z-index: 10; text-align: center; width: 90%; max-width: 600px; }
-        .welcome-text h1 { 
-            font-family: 'Press Start 2P', cursive; /* Estilo Pixel Art */
-            font-size: clamp(1rem, 5vw, 2.5rem); 
-            letter-spacing: 2px; 
-            color: var(--orange); 
-            margin-bottom: 30px; 
+        .welcome-text { 
+            position: absolute; 
+            top: 15%; /* Baixado para não cortar o topo do banner */
+            width: 100%; 
+            z-index: 10; 
+            text-align: center; 
         }
 
-        /* CONSOLE DE PENTEST */
+        /* ESTILO DO TERMINAL POSICIONADO */
         .terminal-box {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             border: 1px solid var(--orange);
-            padding: 15px;
-            margin: 0 auto 30px auto;
-            width: 100%;
-            max-width: 450px;
-            height: 150px;
+            padding: 12px;
+            
+            /* Posicionamento conforme sua seta */
+            position: fixed;
+            bottom: 10%; 
+            left: 5%; 
+            
+            width: 300px; 
+            height: 180px;
+            
             text-align: left;
             font-size: 0.65rem;
             color: var(--terminal-green);
             overflow: hidden;
             border-radius: 4px;
-            box-shadow: 0 0 15px rgba(255, 130, 0, 0.2);
-            line-height: 1.5;
+            box-shadow: 0 0 20px rgba(255, 130, 0, 0.3);
+            line-height: 1.4;
         }
 
         .terminal-cursor {
             animation: blink 1s infinite;
             color: var(--orange);
-            font-weight: bold;
         }
 
-        .pulse { font-size: 0.8rem; margin-top: 20px; letter-spacing: 5px; animation: blink 2s infinite; color: #666; text-transform: uppercase; }
+        .instruction-text { 
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem; 
+            letter-spacing: 2px; 
+            animation: blink 2s infinite; 
+            color: var(--orange); 
+            text-transform: uppercase;
+        }
 
-        @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
         /* CONTEÚDO PRINCIPAL */
         #main-site { opacity: 0; visibility: hidden; transition: 1s ease-in; padding-bottom: 100px; }
@@ -106,11 +116,8 @@
         .card { 
             background: var(--grey); border: 1px solid var(--border); 
             padding: 35px; border-radius: 8px; transition: 0.4s; 
-            position: relative; overflow: hidden;
         }
-        .card:hover { border-color: var(--orange); transform: translateY(-10px); background: #0f0f0f; }
-        .card h3 { margin: 15px 0; font-size: 1.4rem; }
-        .card-specs { margin-top: 25px; font-size: 0.75rem; color: #444; border-top: 1px solid #1a1a1a; padding-top: 15px; }
+        .card:hover { border-color: var(--orange); transform: translateY(-10px); }
 
         .hidden { display: none; }
     </style>
@@ -124,14 +131,12 @@
         <div class="video-overlay"></div>
         
         <div class="welcome-text">
-            <h1 class="glitch">SIGNAL REAPER LABS</h1>
-            
-            <div class="terminal-box">
-                <div id="terminal-content"></div>
-                <span class="terminal-cursor">_</span>
-            </div>
+            <p class="instruction-text">TOQUE PARA INICIAR</p>
+        </div>
 
-            <p class="pulse">CLIQUE PARA INICIAR SISTEMA</p>
+        <div class="terminal-box">
+            <div id="terminal-content"></div>
+            <span class="terminal-cursor">_</span>
         </div>
     </div>
 
@@ -144,16 +149,12 @@
         <section class="presentation">
             <span class="tag">Identity Profile</span>
             <h2>Olá, eu me chamo <span class="orange-text">Vitor</span>.</h2>
-            
             <p>
-                Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP de São Paulo. 
-                Atualmente estou consolidando minha base teórica em matemática e física, enquanto aplico 
-                conhecimentos práticos em <span class="orange-text">eletrônica e programação C++</span>.
+                Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP. 
+                Consolidando base teórica e aplicando prática em <span class="orange-text">eletrônica e C++</span>.
             </p>
-            
             <p>
-                Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span> 
-                e ferramentas para <span class="orange-text">auditoria de sinais</span>.
+                Foco em <span class="white-text">sistemas embarcados</span> e <span class="orange-text">auditoria de sinais</span>.
             </p>
         </section>
 
@@ -161,36 +162,28 @@
             <div class="card">
                 <span class="tag">RF Analysis</span>
                 <h3>Command CC1101</h3>
-                <p>Módulo para clonagem e análise de rádio frequência. Equipado com transceptor CC1101 e antenas otimizadas.</p>
-                <div class="card-specs">FREQ: 433MHz | ANTENA: 8cm | CHIP: CC1101</div>
+                <p>Módulo para clonagem e análise de rádio frequência.</p>
+                <div class="card-specs">FREQ: 433MHz | CHIP: CC1101</div>
             </div>
-
             <div class="card">
                 <span class="tag">Security Lab</span>
                 <h3>Marauder CYD</h3>
-                <p>Interface de auditoria WiFi/Bluetooth portátil com tela touch de 2.8 polegadas e processamento ESP32.</p>
-                <div class="card-specs">MCU: ESP32-WROOM | DISPLAY: 2.8" TFT | OS: MARAUDER</div>
-            </div>
-
-            <div class="card">
-                <span class="tag">Connectivity</span>
-                <h3>LoRa SX1278</h3>
-                <p>Implementação de comunicação de dados de longo alcance para monitoramento e telemetria.</p>
-                <div class="card-specs">CHIP: SX1278 | RANGE: 10KM+ | PROTOCOL: LoRa</div>
+                <p>Interface de auditoria WiFi/Bluetooth com ESP32.</p>
+                <div class="card-specs">MCU: ESP32 | OS: MARAUDER</div>
             </div>
         </section>
     </main>
 
     <script>
-        // Lógica do Terminal de Pentest
         const pentestLines = [
             "> nmap -sV 192.168.1.1",
             "> starting marauder_cyd...",
             "> capturing handshake...",
             "> interface wlan0mon enabled",
             "> scanning frequencies...",
+            "> packet injection: active",
             "> SIGNAL REAPER LABS: ONLINE",
-            "> AWAITING USER INPUT..."
+            "> READY TO START."
         ];
 
         let lineIdx = 0;
@@ -199,18 +192,14 @@
             if (lineIdx < pentestLines.length) {
                 content.innerHTML += pentestLines[lineIdx] + "<br>";
                 lineIdx++;
-                // Velocidade de digitação das linhas (800ms)
-                setTimeout(runTerminal, 800); 
+                setTimeout(runTerminal, 600); 
             }
         }
 
-        // Função para transição de tela
         function iniciarLab() {
             const screen = document.getElementById('welcome-screen');
             const main = document.getElementById('main-site');
-            
             screen.style.transform = 'translateY(-100%)';
-            
             setTimeout(() => {
                 screen.classList.add('hidden');
                 main.classList.add('show-site');
@@ -218,7 +207,6 @@
             }, 800);
         }
 
-        // Inicia o terminal assim que o site carrega
         window.onload = runTerminal;
     </script>
 </body>
