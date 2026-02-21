@@ -1,55 +1,35 @@
-// Funções de Inicialização e Terminal (Mantidas)
-const getDateTime = () => {
-    const now = new Date();
-    return now.toLocaleDateString('pt-BR') + " " + now.toLocaleTimeString('pt-BR');
-};
-
-const pentestLines = [
-    `> BOOT_SEQUENCE: ${getDateTime()}`,
-    "> STATUS: ENCRYPTED_ACCESS",
-    "> READY_FOR_INTERACTION."
-];
-
+// Escreve no terminal
+const pentestLines = ["> BOOTING...", "> SIGNAL_REAPER_LABS", "> STATUS: ONLINE"];
 let lineIdx = 0;
+
 function runTerminal() {
     const content = document.getElementById("terminal-content");
     if (content && lineIdx < pentestLines.length) {
-        const line = document.createElement("div");
-        line.innerHTML = pentestLines[lineIdx];
-        content.appendChild(line);
+        content.innerHTML += `<div>${pentestLines[lineIdx]}</div>`;
         lineIdx++;
-        setTimeout(runTerminal, 600); 
+        setTimeout(runTerminal, 600);
     }
 }
 
+// Entra no site
 function iniciarLab() {
-    const screen = document.getElementById('welcome-screen');
-    const main = document.getElementById('main-site');
-    screen.style.transform = 'translateY(-100%)';
+    document.getElementById('welcome-screen').style.transform = 'translateY(-100%)';
+    document.getElementById('main-site').classList.add('show-site');
+    // Remove do DOM após a animação para não travar cliques
     setTimeout(() => {
-        screen.classList.add('hidden');
-        main.classList.add('show-site');
+        document.getElementById('welcome-screen').classList.add('hidden');
     }, 800);
 }
 
-// --- NOVAS FUNÇÕES ---
-
-// Função para revelar detalhes ao clicar (Ideal para Mobile)
+// Alterna o Card
 function toggleDetails(card) {
-    // Se o card já estiver ativo, ele fecha. Se não, ele abre e fecha os outros.
-    const isActive = card.classList.contains('active');
-    document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
-    
-    if (!isActive) {
-        card.classList.add('active');
-    }
+    card.classList.toggle('active');
 }
 
-// Função de Contato
+// WhatsApp
 function contatoWhatsApp(produto) {
-    const numero = "55179XXXXXXXX"; // Seu número
-    const msg = encodeURIComponent(`Olá Vitor! Tenho interesse no projeto: ${produto}`);
-    window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
+    const msg = encodeURIComponent(`Tenho interesse no ${produto}`);
+    window.open(`https://wa.me/55179XXXXXXXX?text=${msg}`, '_blank');
 }
 
 window.onload = runTerminal;
