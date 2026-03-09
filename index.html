@@ -9,67 +9,208 @@
 </head>
 <body>
 
-    <div id="welcome-screen" onclick="iniciarLab()">
+    <!-- Cursor customizado (dois elementos que seguem o mouse) -->
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- ===================== TELA DE ENTRADA ===================== -->
+    <div id="welcome-screen">
+
+        <!-- Vídeo de fundo -->
         <video autoplay muted loop playsinline id="hero-video">
             <source src="banner.mp4" type="video/mp4">
         </video>
-        <div class="video-overlay"></div>
-        
+
+        <!-- Efeito de scanlines sobre o vídeo -->
+        <div class="scanlines"></div>
+
+        <!-- Canvas para as partículas -->
+        <canvas id="particle-canvas"></canvas>
+
+        <!-- Texto principal com efeito glitch -->
         <div class="welcome-text">
-            <p class="instruction-text">TOQUE PARA INICIAR</p>
+            <p class="instruction-text" data-text="TOQUE PARA INICIAR">TOQUE PARA INICIAR</p>
         </div>
 
+        <!-- Terminal animado no canto inferior esquerdo -->
         <div class="terminal-box">
             <div class="terminal-header">SIGNAL_REAPER_OS [VER 2.0.26]</div>
             <div id="terminal-content"></div>
-            <span class="terminal-cursor">_</span>
+            <!-- Input do terminal aparece depois do boot -->
+            <div id="terminal-input-line" style="display:none;">
+                <span style="color: var(--orange);">&gt;&nbsp;</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" />
+                <span class="terminal-cursor">_</span>
+            </div>
+            <span id="boot-cursor" class="terminal-cursor">_</span>
         </div>
     </div>
 
+    <!-- ===================== SITE PRINCIPAL ===================== -->
     <main id="main-site">
-        <nav>
+
+        <!-- NAVBAR -->
+        <nav id="navbar">
             <div class="logo">SIGNAL_REAPER_LABS</div>
+
+            <!-- Botão hambúrguer para mobile -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Links de navegação -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#sobre">[SOBRE]</a></li>
+                <li><a href="#skills">[SKILLS]</a></li>
+                <li><a href="#projetos">[PROJETOS]</a></li>
+                <li><a href="#contato">[CONTATO]</a></li>
+            </ul>
+
             <div class="campus-tag">IFSP_CAMPUS_CATANDUVA</div>
         </nav>
 
-        <section class="presentation">
-            <span class="tag">Identity Profile</span>
-            <h2>Olá, eu me chamo <span class="orange-text">Vitor</span>.</h2>
-            
-            <p>
-                Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP. 
-                Atualmente estou consolidando minha base teórica, enquanto aplico 
+        <!-- SEÇÃO: APRESENTAÇÃO -->
+        <section class="presentation" id="sobre">
+            <span class="tag animate-entry">Identity Profile</span>
+            <h2 class="animate-entry">Olá, eu me chamo <span class="orange-text">Vitor</span>.</h2>
+
+            <p class="animate-entry">
+                Tenho 20 anos e curso <span class="white-text">Engenharia de Controle e Automação</span> no IFSP.
+                Atualmente estou consolidando minha base teórica, enquanto aplico
                 conhecimentos práticos em <span class="orange-text">eletrônica e programação C++</span>.
             </p>
-            
-            <p>
-                Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span> 
+
+            <p class="animate-entry">
+                Meu foco é o desenvolvimento de <span class="white-text">sistemas embarcados inteligentes</span>
                 e ferramentas para <span class="orange-text">auditoria de sinais</span>.
             </p>
         </section>
 
-        <section class="products-grid">
-            <div class="card">
-                <span class="tag">RF Analysis</span>
-                <h3>Command CC1101</h3>
-                <p>Módulo para clonagem e análise de rádio frequência. Equipado com transceptor CC1101.</p>
-                <div class="card-specs">FREQ: 433MHz | CHIP: CC1101</div>
-            </div>
+        <!-- SEÇÃO: SKILLS -->
+        <section id="skills">
+            <div class="skills-container">
+                <span class="tag animate-entry">[ABILITIES]</span>
+                <h2 class="animate-entry">SKILL_MATRIX</h2>
 
-            <div class="card">
-                <span class="tag">Security Lab</span>
-                <h3>Marauder CYD</h3>
-                <p>Interface de auditoria WiFi/Bluetooth portátil com tela touch e processamento ESP32.</p>
-                <div class="card-specs">MCU: ESP32-WROOM | OS: MARAUDER</div>
-            </div>
+                <div class="skill-bars">
 
-            <div class="card">
-                <span class="tag">Connectivity</span>
-                <h3>LoRa SX1278</h3>
-                <p>Implementação de comunicação de dados de longo alcance para telemetria.</p>
-                <div class="card-specs">CHIP: SX1278 | PROTOCOL: LoRa</div>
+                    <div class="skill-item animate-entry">
+                        <div class="skill-label">
+                            <!-- Ícone de chip -->
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="10" height="10"/><path d="M7 9H4M7 12H4M7 15H4M17 9h3M17 12h3M17 15h3M9 7V4M12 7V4M15 7V4M9 17v3M12 17v3M15 17v3"/></svg>
+                            C++ / Embedded
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-width="75"></div>
+                        </div>
+                        <span class="skill-percent">75%</span>
+                    </div>
+
+                    <div class="skill-item animate-entry">
+                        <div class="skill-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h3M19 12h3M12 2v3M12 19v3"/><circle cx="12" cy="12" r="4"/><path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+                            RF / Signal Analysis
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-width="65"></div>
+                        </div>
+                        <span class="skill-percent">65%</span>
+                    </div>
+
+                    <div class="skill-item animate-entry">
+                        <div class="skill-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            Python
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-width="50"></div>
+                        </div>
+                        <span class="skill-percent">50%</span>
+                    </div>
+
+                    <div class="skill-item animate-entry">
+                        <div class="skill-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            HTML / CSS / JS
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-width="60"></div>
+                        </div>
+                        <span class="skill-percent">60%</span>
+                    </div>
+
+                    <div class="skill-item animate-entry">
+                        <div class="skill-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+                            Electronics
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-width="80"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+
+                </div>
             </div>
         </section>
+
+        <!-- SEÇÃO: PROJETOS -->
+        <section id="projetos">
+            <div class="projects-header">
+                <span class="tag animate-entry">[HARDWARE]</span>
+                <h2 class="animate-entry">PROJECT_LOG</h2>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- Card 1 -->
+                <div class="card animate-entry">
+                    <!-- Ícone SVG de antena -->
+                    <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8.5C2 8.5 6 4 12 4s10 4.5 10 4.5"/><path d="M5 11.5S7.5 9 12 9s7 2.5 7 2.5"/><path d="M8.5 14.5S9.5 13 12 13s3.5 1.5 3.5 1.5"/><line x1="12" y1="16" x2="12" y2="20"/><line x1="9" y1="20" x2="15" y2="20"/></svg>
+                    <span class="tag">RF Analysis</span>
+                    <h3>Command CC1101</h3>
+                    <p>Módulo para clonagem e análise de rádio frequência. Equipado com transceptor CC1101.</p>
+                    <div class="card-specs">FREQ: 433MHz | CHIP: CC1101</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card animate-entry">
+                    <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M8.5 6.5s1-1.5 3.5-1.5 3.5 1.5 3.5 1.5"/><path d="M6.5 4.5S8 2 12 2s5.5 2.5 5.5 2.5"/></svg>
+                    <span class="tag">Security Lab</span>
+                    <h3>Marauder CYD</h3>
+                    <p>Interface de auditoria WiFi/Bluetooth portátil com tela touch e processamento ESP32.</p>
+                    <div class="card-specs">MCU: ESP32-WROOM | OS: MARAUDER</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card animate-entry">
+                    <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    <span class="tag">Connectivity</span>
+                    <h3>LoRa SX1278</h3>
+                    <p>Implementação de comunicação de dados de longo alcance para telemetria.</p>
+                    <div class="card-specs">CHIP: SX1278 | PROTOCOL: LoRa</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RODAPÉ -->
+        <footer id="contato">
+            <div class="footer-content">
+                <div class="footer-logo">SIGNAL_REAPER_LABS © 2026</div>
+                <div class="footer-links">
+                    <!-- GitHub -->
+                    <a href="https://github.com/vitorpereiras373-coder" target="_blank" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:contato@signalreaper.dev" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
     </main>
 
     <script src="script.js"></script>
