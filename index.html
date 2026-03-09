@@ -9,9 +9,9 @@
 </head>
 <body>
 
-    <!-- Cursor customizado (dois elementos que seguem o mouse) -->
-    <div class="cursor"></div>
-    <div class="cursor-ring"></div>
+    <!-- Cursor customizado -->
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
 
     <!-- ===================== TELA DE ENTRADA ===================== -->
     <div id="welcome-screen">
@@ -33,12 +33,12 @@
         </div>
 
         <!-- Terminal animado no canto inferior esquerdo -->
-        <div class="terminal-box">
+        <div class="terminal-box" id="terminal-box">
             <div class="terminal-header">SIGNAL_REAPER_OS [VER 2.0.26]</div>
             <div id="terminal-content"></div>
-            <!-- Input do terminal aparece depois do boot -->
+            <!-- Input interativo aparece após o boot -->
             <div id="terminal-input-line" style="display:none;">
-                <span style="color: var(--orange);">&gt;&nbsp;</span>
+                <span style="color: var(--accent);">&gt;&nbsp;</span>
                 <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" />
                 <span class="terminal-cursor">_</span>
             </div>
@@ -54,7 +54,7 @@
             <div class="logo">SIGNAL_REAPER_LABS</div>
 
             <!-- Botão hambúrguer para mobile -->
-            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
 
@@ -96,7 +96,6 @@
 
                     <div class="skill-item animate-entry">
                         <div class="skill-label">
-                            <!-- Ícone de chip -->
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="10" height="10"/><path d="M7 9H4M7 12H4M7 15H4M17 9h3M17 12h3M17 15h3M9 7V4M12 7V4M15 7V4M9 17v3M12 17v3M15 17v3"/></svg>
                             C++ / Embedded
                         </div>
@@ -130,7 +129,7 @@
 
                     <div class="skill-item animate-entry">
                         <div class="skill-label">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/><\/svg>
                             HTML / CSS / JS
                         </div>
                         <div class="skill-bar-bg">
@@ -165,7 +164,6 @@
 
                 <!-- Card 1 -->
                 <div class="card animate-entry">
-                    <!-- Ícone SVG de antena -->
                     <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8.5C2 8.5 6 4 12 4s10 4.5 10 4.5"/><path d="M5 11.5S7.5 9 12 9s7 2.5 7 2.5"/><path d="M8.5 14.5S9.5 13 12 13s3.5 1.5 3.5 1.5"/><line x1="12" y1="16" x2="12" y2="20"/><line x1="9" y1="20" x2="15" y2="20"/></svg>
                     <span class="tag">RF Analysis</span>
                     <h3>Command CC1101</h3>
@@ -197,10 +195,10 @@
         <!-- RODAPÉ -->
         <footer id="contato">
             <div class="footer-content">
-                <div class="footer-logo">SIGNAL_REAPER_LABS © 2026</div>
+                <div class="footer-logo">SIGNAL_REAPER_LABS &copy; 2026</div>
                 <div class="footer-links">
                     <!-- GitHub -->
-                    <a href="https://github.com/vitorpereiras373-coder" target="_blank" aria-label="GitHub">
+                    <a href="https://github.com/vitorpereiras373-coder" target="_blank" rel="noopener" aria-label="GitHub">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                     </a>
                     <!-- Email -->
