@@ -156,16 +156,29 @@ if (sections.length && navAnchors.length) {
 }
 
 
-// ---- ANIMATE ENTRY ----
-const observer = new IntersectionObserver((entries) => {
+// ---- ANIMATE ENTRY: aparece ao entrar na viewport ----
+// Usa requestAnimationFrame para garantir que os elementos já na tela
+// recebam .visible logo no primeiro frame, sem precisar rolar a página.
+const animateObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            animateObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12 });
+}, { threshold: 0.05 });
 
-document.querySelectorAll('.animate-entry').forEach(el => observer.observe(el));
+document.querySelectorAll('.animate-entry').forEach(el => animateObserver.observe(el));
+
+// Fallback: após 300ms força .visible em tudo que já está na viewport
+setTimeout(() => {
+    document.querySelectorAll('.animate-entry:not(.visible)').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+        }
+    });
+}, 300);
 
 
 // ---- SKILL BARS ----
@@ -179,6 +192,6 @@ const skillObserver = new IntersectionObserver((entries) => {
             }
         }
     });
-}, { threshold: 0.4 });
+}, { threshold: 0.3 });
 
 document.querySelectorAll('.skill-card').forEach(item => skillObserver.observe(item));
