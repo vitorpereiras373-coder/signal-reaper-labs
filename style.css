@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* =============================================
    SIGNAL REAPER LABS — STYLE v4
    Paleta: laranja #FF8200, preto #000, cinza #0a0a0a
    ============================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
     --orange: #FF8200;
@@ -493,6 +493,15 @@ body, html {
 .animate-entry:nth-child(4) { transition-delay: 0.3s; }
 .animate-entry:nth-child(5) { transition-delay: 0.4s; }
 .animate-entry:nth-child(6) { transition-delay: 0.5s; }
+
+/* Hero elements are always in the viewport on load — override the
+   animate-entry opacity:0 so they are visible even before JS runs.
+   The JS IntersectionObserver will still trigger and the CSS transition
+   creates the entrance effect in real browsers. */
+.hero .animate-entry {
+    opacity: 1;
+    transform: none;
+}
 
 /* =============================================
    SEÇÕES GERAIS
